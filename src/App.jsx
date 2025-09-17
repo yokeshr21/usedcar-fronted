@@ -12,10 +12,8 @@ function App() {
       {/* Public Routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-
-      {/* Protected Routes */}
-      <Route path="/cars" element={isAuthenticated ? <CarList /> : <Navigate to="/login" />} />
-      <Route path="/cars/:id" element={isAuthenticated ? <CarDetails /> : <Navigate to="/login" />} />
+      <Route path="/cars" element={<CarList />} />
+      <Route path="/cars/:id" element={<CarDetails />} />
       
       {/* Default Route */}
       <Route path="*" element={<Navigate to="/cars" />} />
