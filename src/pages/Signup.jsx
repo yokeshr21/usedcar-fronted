@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API from "../api/axiosConfig";
+import { signup } from "../api/auth";
 
 export default function Signup() {
     const [username, setUsername] = useState("");
@@ -10,7 +10,7 @@ export default function Signup() {
     const handleSignup = async (e) => {
         e.preventDefault();
         try {
-            await API.post("/auth/signup", { username, password });
+            await signup({ username, password });
             alert("Signup successful! Please login.");
             navigate("/login");
         } catch (err) {

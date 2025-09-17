@@ -1,28 +1,19 @@
 import API from "./axiosConfig";
 
-export const getCars = (page = 0, size = 10) => {
-    return API.get(`/cars?page=${page}&size=${size}`);
-};
+export const getCars = () => 
+    API.get("/cars");
 
-export const searchCars = (params) => {
-    return API.get("/cars/search", { params });
-};
+export const getCarById = (id) => 
+    API.get(`/cars/${id}`);
 
-export const getCarById = (id) => {
-    return API.get(`/cars/${id}`);
-};
+export const addCar = (car) => 
+    API.post("/cars", car);
 
-export const addCar = (car) => {
-    return API.post("/cars", car);
-};
+export const updateCar = (id, car) =>
+    API.put(`/cars/${id}`, car);
 
-export const updateCar = (id, car) => {
-    return API.put(`/cars/${id}`, car);
-};
-
-export const deleteCar = (id) => {
-    return API.delete(`/cars/${id}`);
-};
+export const deleteCar = (id) =>
+    API.delete(`/cars/${id}`);
 
 export const uploadCarImage = (id, file) => {
     const formData = new FormData();

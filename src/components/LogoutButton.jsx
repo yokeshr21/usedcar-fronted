@@ -1,16 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import { logout } from "../api/auth";
 
 export default function LogoutButton() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        logout();
         navigate("/login");
     };
 
-    return (
-        <button onClick={handleLogout} style={{ margin: "10px" }}>
-            Logout
-        </button>
-    );
+    return <button onClick={handleLogout}>Logout</button>;
 }

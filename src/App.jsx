@@ -12,6 +12,8 @@ function App() {
       {/* Public Routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+
+      {/* Cars (public) */}
       <Route path="/cars" element={<CarList />} />
       <Route path="/cars/:id" element={<CarDetails />} />
       

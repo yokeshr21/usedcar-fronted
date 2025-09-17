@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API from "../api/axiosConfig";
+import { login } from "../api/auth";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -10,8 +10,7 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await API.post("/auth/login", { username, password });
-            localStorage.setItem("token", res.data.token);
+            await login({ username, password });
             navigate("/cars");
         } catch (err) {
             alert("Invalid credentials. Try again.");
