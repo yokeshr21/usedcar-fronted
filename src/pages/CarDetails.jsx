@@ -1,38 +1,43 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getCarById } from "../api/cars";
+import api from "../api/axios";
+import { useAuth } from "../hooks/useAuth";
 
 export default function CarDetails() {
-    const { id } = useParams();
-    const [car, setCar] = useState(null);
-    const navigate = useNavigate();
+  const { id } = useParams();
+  const [car, setCar] = useState(null);
+  const navigate = useNavigate();
+  const { token } = useAuth();
 
-    useEffect(() => {
-        const fetchCar = async () => {
-            try {
-                const res = await getCarById(id);
-                setCar(res.data);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-        fetchCar();
-    }, [id]);
+  useEffect(() => {
+    api.get(`/cars/${id}`).then(res => setCar(res.data));
+  }, [id]);
 
-    if (!car) return <p>Loading...</p>;
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this car?")) {
+      await api.delete(`/cars/${id}`);
+      navigate("/");
+    }
+  };
 
-    return (
-        <div style={{ padding: "20px" }}>
-            <button onClick={() => navigate(-1)}>Back</button>
-            <h2>{car.make} {car.model}</h2>
-            <img src={`http://localhost:8080/api/cars/images/${car.imageUrl}`} alt={car.make} style={{ width: "50%" }} />
-            <p>{car.description}</p>
-            <ul>
-                <li>Year: {car.year}</li>
-                <li>Price: ${car.price}</li>
-                <li>Mileage: {car.mileage} km</li>
-            </ul>
-        </div>
-    );
+  if (!car) return <p>Loading...</p>;
 
+  console.log("Car image URL:", car.imageUrl);
+
+  return (
+    <div>
+       <h2>{car.make} {car.model}</h2>
+       {car.imageUrl && <img src={car.imageUrl} alt="Car" width="300" />}
+       <p>Year: {car.year}</p>
+       <p>Price: Rs.{car.price}</p>
+       <p>Mileage: {car.mileage} km</p>
+       <p>{car.description}</p>
+       {token && (
+       <>
+       <button onClick={() => navigate(`/edit-car/${car.id}`)}>Edit</button>
+       <button onClick={handleDelete}>Delete</button>
+       </>
+       )}
+    </div>
+  );
 }

@@ -1,43 +1,28 @@
 import { useState } from "react";
+import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
-import { signup } from "../api/auth";
 
 export default function Signup() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-    const handleSignup = async (e) => {
-        e.preventDefault();
-        try {
-            await signup({ username, password });
-            alert("Signup successful! Please login.");
-            navigate("/login");
-        } catch (err) {
-            alert("Signup failed. Try again.");
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await api.post("/auth/signup", { username, password, role: "USER" });
+      alert("Signup successful!");
+      navigate("/login");
+    } catch {
+      alert("Signup failed");
+    }
+  };
 
-    return (
-        <div className="form-container">
-            <h2>Signup</h2>
-            <form onSubmit={handleSignup}>
-                <input
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                />
-                <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                />
-                <button type="submit">Signup</button>
-            </form>
-        </div>
-    );
+  return (
+    <form onSubmit={handleSubmit}>
+      <input value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" />
+      <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
+      <button type="submit">Signup</button>
+    </form>
+  );
 }
