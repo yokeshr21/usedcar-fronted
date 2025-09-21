@@ -25,18 +25,18 @@ export default function CarDetails() {
   console.log("Car image URL:", car.imageUrl);
 
   return (
-    <div>
+    <div className="car-details">
        <h2>{car.make} {car.model}</h2>
-       {car.imageUrl && <img src={car.imageUrl} alt="Car" width="300" />}
+       {car.imageUrl && <img src={car.imageUrl} alt="Car" className="details-image" />}
        <p>Year: {car.year}</p>
        <p>Price: Rs.{car.price}</p>
        <p>Mileage: {car.mileage} km</p>
        <p>{car.description}</p>
        {token && (
-       <>
+       <div className="actions">
        <button onClick={() => navigate(`/edit-car/${car.id}`)}>Edit</button>
        <button onClick={handleDelete}>Delete</button>
-       </>
+       </div>
        )}
     </div>
   );

@@ -5,12 +5,14 @@ export default function Navbar() {
   const { token, logout } = useAuth();
 
   return (
-    <nav>
+    <nav className="navbar">
+      <h1 className="logo">Used car Hub</h1>
+      <div className="nav-links">
       <Link to="/">Home</Link>
       {token ? (
         <>
           <Link to="/add-car">Add Car</Link>
-          <button onClick={logout}>Logout</button>
+          <button onClick={logout} className="logout-btn">Logout</button>
         </>
       ) : (
         <>
@@ -18,6 +20,7 @@ export default function Navbar() {
           <Link to="/signup">Signup</Link>
         </>
       )}
+      </div>
     </nav>
   );
 }

@@ -55,16 +55,16 @@ export default function CarForm({ editMode = false }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="make" value={car.make} onChange={handleChange} placeholder="Make" />
-      <input name="model" value={car.model} onChange={handleChange} placeholder="Model" />
-      <input name="year" value={car.year} onChange={handleChange} placeholder="Year" />
-      <input name="price" value={car.price} onChange={handleChange} placeholder="Price" />
-      <input name="mileage" value={car.mileage} onChange={handleChange} placeholder="Mileage" />
-      <textarea name="description" value={car.description} onChange={handleChange} placeholder="Description" />
-      <input type="file" onChange={handleFileChange} />
-      {car.imageUrl && <img src={car.imageUrl} alt="Car" width="150" />}
-      <button type="submit">{editMode ? "Update Car" : "Add Car"}</button>
+    <form onSubmit={handleSubmit} className="car-form">
+      <input className="form-input" name="make" value={car.make} onChange={handleChange} placeholder="Make" />
+      <input className="form-input" name="model" value={car.model} onChange={handleChange} placeholder="Model" />
+      <input className="form-input" name="year" value={car.year} onChange={handleChange} placeholder="Year" />
+      <input className="form-input" name="price" value={car.price} onChange={handleChange} placeholder="Price" />
+      <input className="form-input" name="mileage" value={car.mileage} onChange={handleChange} placeholder="Mileage" />
+      <textarea className="form-textarea" name="description" value={car.description} onChange={handleChange} placeholder="Description" />
+      <input type="file" className="form-file" onChange={handleFileChange} />
+      {car.imageUrl && <img src={car.imageUrl} alt="Car" className="form-preview" />}
+      <button type="submit" className="form-btn">{editMode ? "Update Car" : "Add Car"}</button>
     </form>
   );
 }

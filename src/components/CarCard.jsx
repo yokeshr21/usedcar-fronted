@@ -14,17 +14,17 @@ export default function CarCard({ car }) {
   };
 
   return (
-    <div style={{ border: "1px solid #ccc", padding: "10px", marginBottom: "10px" }}>
-      {car.imageUrl && <img src={car.imageUrl} alt="Car" width="300" />}
+    <div className="car-card">
+      {car.imageUrl && <img src={car.imageUrl} alt="Car" className="car-image" />}
       <h3>{car.make} {car.model}</h3>
       <p>Year: {car.year}</p>
       <p>Price: Rs.{car.price}</p>
-      <Link to={`/cars/${car.id}`}>View Details</Link>
+      <Link to={`/cars/${car.id}`} className="details-link">View Details</Link>
       {token && (
-        <>
+        <div className="actions">
           <button onClick={() => navigate(`/edit-car/${car.id}`)}>Edit</button>
           <button onClick={handleDelete}>Delete</button>
-        </>
+        </div>
       )}
     </div>
   );

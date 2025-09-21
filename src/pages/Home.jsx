@@ -16,14 +16,16 @@ export default function Home() {
   }, [page]);
 
   return (
-    <div>
-      <h2>Used Cars</h2>
+    <div className="home-container">
+      <h2 className="page-title">Used Cars</h2>
+      <div className="car-list">
       {cars.map(car => <CarCard key={car.id} car={car} />)}
+      </div>
 
-      <div>
-        <button disabled={page === 0} onClick={() => setPage(p => p - 1)}>Prev</button>
-        <span> Page {page + 1} of {totalPages} </span>
-        <button disabled={page + 1 === totalPages} onClick={() => setPage(p => p + 1)}>Next</button>
+      <div className="pagination">
+        <button className="page-btn" disabled={page === 0} onClick={() => setPage(p => p - 1)}>Prev</button>
+        <span className="page-info"> Page {page + 1} of {totalPages} </span>
+        <button className="page-btn" disabled={page + 1 === totalPages} onClick={() => setPage(p => p + 1)}>Next</button>
       </div>
     </div>
   );
