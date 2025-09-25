@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import "../pages/styles/Login.css";
 
 export default function Signup() {
   const [username, setUsername] = useState("");

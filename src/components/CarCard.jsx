@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import api from "../api/axios";
+import "../components/styles/CarCard.css";
 
 export default function CarCard({ car }) {
   const { token } = useAuth();
@@ -23,7 +24,7 @@ export default function CarCard({ car }) {
       {token && (
         <div className="actions">
           <button onClick={() => navigate(`/edit-car/${car.id}`)}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
+          <button className="delete" onClick={handleDelete}>Delete</button>
         </div>
       )}
     </div>

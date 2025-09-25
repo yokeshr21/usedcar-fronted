@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api/axios";
 import { useNavigate, useParams } from "react-router-dom";
+import "../pages/styles/CarForm.css";
 
 export default function CarForm({ editMode = false }) {
   const [car, setCar] = useState({

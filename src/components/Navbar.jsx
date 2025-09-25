@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import "../components/styles/Navbar.css";
 
 export default function Navbar() {
   const { token, logout } = useAuth();
 
   return (
     <nav className="navbar">
-      <h1 className="logo">Used car Hub</h1>
+      <h1 className="logo">Used Car Hub</h1>
       <div className="nav-links">
       <Link to="/">Home</Link>
       {token ? (

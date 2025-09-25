@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import CarCard from "../components/CarCard";
+import "../pages/styles/Home.css";
 
 export default function Home() {
   const [cars, setCars] = useState([]);
